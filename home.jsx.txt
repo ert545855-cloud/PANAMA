@@ -1,0 +1,226 @@
+"import React, { useEffect, useRef, useState } from \"react\";
+import { Link } from \"react-router-dom\";
+import { api } from \"@/lib/api\";
+import ProductCard from \"@/components/ProductCard\";
+import { ChevronLeft, ChevronRight, Star } from \"lucide-react\";
+
+const CATEGORIES = [
+  { slug: \"pantolon\", title: \"Pantolon\", img: \"https://images.unsplash.com/photo-1584273143981-41c073dfe8f8?crop=entropy&cs=srgb&fm=jpg&q=85&w=900\" },
+  { slug: \"elbise\", title: \"Elbise\", img: \"https://images.unsplash.com/photo-1580476163041-d895d5d22c62?crop=entropy&cs=srgb&fm=jpg&q=85&w=900\" },
+  { slug: \"etek\", title: \"Etek\", img: \"https://images.unsplash.com/photo-1653286431693-2bbde8b10e14?crop=entropy&cs=srgb&fm=jpg&q=85&w=900\" },
+  { slug: \"blazer\", title: \"Blazer\", img: \"https://images.unsplash.com/photo-1616065297556-f05bc00c9a3e?crop=entropy&cs=srgb&fm=jpg&q=85&w=900\" },
+];
+
+const INSTAGRAM = [
+  \"https://images.unsplash.com/photo-1629511565591-a1d494ad6c58?crop=entropy&cs=srgb&fm=jpg&q=85&w=600\",
+  \"https://images.unsplash.com/photo-1677246791501-85875b1ab187?crop=entropy&cs=srgb&fm=jpg&q=85&w=600\",
+  \"https://images.unsplash.com/photo-1580478491436-fd6a937acc9e?crop=entropy&cs=srgb&fm=jpg&q=85&w=600\",
+  \"https://images.unsplash.com/photo-1608234808654-2a8875faa7fd?crop=entropy&cs=srgb&fm=jpg&q=85&w=600\",
+  \"https://images.unsplash.com/photo-1616065297556-f05bc00c9a3e?crop=entropy&cs=srgb&fm=jpg&q=85&w=600\",
+  \"https://images.unsplash.com/photo-1584273143981-41c073dfe8f8?crop=entropy&cs=srgb&fm=jpg&q=85&w=600\",
+];
+
+export default function Home() {
+  const [bestsellers, setBestsellers] = useState([]);
+  const [arrivals, setArrivals] = useState([]);
+  const [reviews, setReviews] = useState([]);
+  const sliderRef = useRef(null);
+
+  useEffect(() => {
+    api.get(\"/products\", { params: { featured: true, limit: 8 } }).then((r) => setBestsellers(r.data));
+    api.get(\"/products\", { params: { new_arrival: true, limit: 10 } }).then((r) => setArrivals(r.data));
+    api.get(\"/reviews\").then((r) => setReviews(r.data));
+  }, []);
+
+  const scrollSlider = (dir) => {
+    if (!sliderRef.current) return;
+    sliderRef.current.scrollBy({ left: dir * 420, behavior: \"smooth\" });
+  };
+
+  return (
+    <div data-testid=\"home-page\">
+      {/* HERO */}
+      <section className=\"relative h-[88vh] min-h-[640px] overflow-hidden\">
+        <img
+          src=\"https://images.unsplash.com/flagged/photo-1570733117311-d990c3816c47?crop=entropy&cs=srgb&fm=jpg&q=85&w=2400\"
+          alt=\"hero\"
+          className=\"absolute inset-0 w-full h-full object-cover\"
+        />
+        <div className=\"absolute inset-0 bg-gradient-to-t from-black/35 via-black/5 to-transparent\" />
+        <div className=\"absolute inset-0 flex items-end pb-24\">
+          <div className=\"max-w-[1600px] mx-auto px-5 sm:px-12 w-full text-white fade-up\">
+            <div className=\"text-[11px] tracking-[0.4em] uppercase mb-5 opacity-90\">SS · 26 Koleksiyon</div>
+            <h1 className=\"font-serif text-5xl sm:text-7xl lg:text-[88px] leading-[1.02] max-w-4xl tracking-tight\">
+              Timeless Elegance,<br /> Modern Confidence
+            </h1>
+            <p className=\"mt-6 text-sm sm:text-base tracking-wide opacity-90 max-w-xl\">
+              Premium kadın giyim koleksiyonu. Saf kumaşlar, mimari kesimler.
+            </p>
+            <div className=\"mt-10 flex flex-col sm:flex-row gap-3\">
+              <Link
+                data-testid=\"hero-shop-now\"
+                to=\"/koleksiyon\"
+                className=\"px-9 py-4 bg-white text-[#111] text-[11px] tracking-[0.3em] uppercase hover:bg-zinc-100 transition text-center\"
+              >
+                Alışverişe Başla
+              </Link>
+              <Link
+                data-testid=\"hero-new-season\"
+                to=\"/yeni-sezon\"
+                className=\"px-9 py-4 border border-white text-white text-[11px] tracking-[0.3em] uppercase hover:bg-white hover:text-[#111] transition text-center\"
+              >
+                Yeni Sezon
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CATEGORIES */}
+      <section className=\"max-w-[1600px] mx-auto px-5 sm:px-8 py-24\">
+        <div className=\"flex items-end justify-between mb-12\">
+          <div>
+            <div className=\"text-[11px] tracking-[0.3em] uppercase text-zinc-500 mb-3\">Koleksiyon</div>
+            <h2 className=\"font-serif text-4xl sm:text-5xl\">Kategoriler</h2>
+          </div>
+          <Link to=\"/koleksiyon\" className=\"hidden sm:inline text-[11px] tracking-[0.25em] uppercase border-b border-[#111] pb-0.5\">
+            Tümünü Gör
+          </Link>
+        </div>
+        <div className=\"grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6\">
+          {CATEGORIES.map((c) => (
+            <Link
+              key={c.slug}
+              to={`/kategori/${c.slug}`}
+              data-testid={`category-card-${c.slug}`}
+              className=\"group relative overflow-hidden block aspect-[3/4] bg-zinc-100\"
+            >
+              <img src={c.img} alt={c.title} className=\"absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition duration-[900ms] ease-out\" />
+              <div className=\"absolute inset-0 bg-gradient-to-t from-black/40 to-transparent\" />
+              <div className=\"absolute bottom-6 left-6 right-6 flex items-center justify-between text-white\">
+                <span className=\"font-serif text-2xl sm:text-3xl\">{c.title}</span>
+                <span className=\"text-[10px] tracking-[0.3em] uppercase opacity-0 group-hover:opacity-100 transition\">Keşfet →</span>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* BEST SELLERS */}
+      <section className=\"max-w-[1600px] mx-auto px-5 sm:px-8 py-12\">
+        <div className=\"flex items-end justify-between mb-12\">
+          <div>
+            <div className=\"text-[11px] tracking-[0.3em] uppercase text-zinc-500 mb-3\">Most Wanted</div>
+            <h2 className=\"font-serif text-4xl sm:text-5xl\">Çok Satanlar</h2>
+          </div>
+        </div>
+        <div className=\"grid grid-cols-2 lg:grid-cols-4 gap-x-5 gap-y-12\">
+          {bestsellers.slice(0, 8).map((p) => (
+            <ProductCard key={p.id} product={p} />
+          ))}
+        </div>
+      </section>
+
+      {/* MARQUEE BANNER */}
+      <section className=\"bg-[#111] text-white py-5 overflow-hidden mt-12\">
+        <div className=\"flex whitespace-nowrap marquee-track\">
+          {Array.from({ length: 2 }).map((_, k) => (
+            <div key={k} className=\"flex shrink-0 items-center gap-16 px-8 text-[11px] tracking-[0.4em] uppercase\">
+              <span>2500 TL Üzeri Ücretsiz Kargo</span><span>·</span>
+              <span>30 Gün Ücretsiz İade</span><span>·</span>
+              <span>İlk Üyelik %10 İndirim · PANAMA10</span><span>·</span>
+              <span>Aynı Gün Kargo · İstanbul</span><span>·</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* NEW ARRIVALS SLIDER */}
+      <section className=\"max-w-[1600px] mx-auto px-5 sm:px-8 py-24\">
+        <div className=\"flex items-end justify-between mb-12\">
+          <div>
+            <div className=\"text-[11px] tracking-[0.3em] uppercase text-zinc-500 mb-3\">Just In</div>
+            <h2 className=\"font-serif text-4xl sm:text-5xl\">Yeni Gelenler</h2>
+          </div>
+          <div className=\"flex gap-2\">
+            <button data-testid=\"slider-prev\" onClick={() => scrollSlider(-1)} className=\"w-10 h-10 border border-zinc-300 flex items-center justify-center hover:bg-[#111] hover:text-white transition\">
+              <ChevronLeft size={16} strokeWidth={1.25} />
+            </button>
+            <button data-testid=\"slider-next\" onClick={() => scrollSlider(1)} className=\"w-10 h-10 border border-zinc-300 flex items-center justify-center hover:bg-[#111] hover:text-white transition\">
+              <ChevronRight size={16} strokeWidth={1.25} />
+            </button>
+          </div>
+        </div>
+        <div ref={sliderRef} className=\"flex gap-6 overflow-x-auto no-scrollbar snap-x snap-mandatory pb-2\">
+          {arrivals.map((p) => (
+            <div key={p.id} className=\"min-w-[260px] sm:min-w-[320px] snap-start\">
+              <ProductCard product={p} />
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* LOOKBOOK */}
+      <section className=\"relative w-full\">
+        <div className=\"relative h-[92vh] min-h-[640px] overflow-hidden\">
+          <img
+            src=\"https://images.unsplash.com/photo-1580478491436-fd6a937acc9e?crop=entropy&cs=srgb&fm=jpg&q=85&w=2400\"
+            alt=\"lookbook\"
+            className=\"absolute inset-0 w-full h-full object-cover\"
+          />
+          <div className=\"absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-transparent\" />
+          <div className=\"absolute inset-0 flex items-center\">
+            <div className=\"max-w-[1600px] mx-auto px-5 sm:px-12 w-full text-white\">
+              <div className=\"text-[11px] tracking-[0.45em] uppercase mb-5\">Lookbook / Vol. III</div>
+              <h2 className=\"font-serif text-5xl sm:text-7xl leading-[1.05] max-w-3xl\">
+                Mimari kesimler,<br /> şehir saatlerinde.
+              </h2>
+              <Link to=\"/koleksiyon\" className=\"inline-block mt-10 px-8 py-4 border border-white text-[11px] tracking-[0.3em] uppercase hover:bg-white hover:text-[#111] transition\" data-testid=\"lookbook-cta\">
+                Tüm Lookbook
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* REVIEWS */}
+      <section className=\"max-w-[1600px] mx-auto px-5 sm:px-8 py-24\">
+        <div className=\"text-center mb-14\">
+          <div className=\"text-[11px] tracking-[0.3em] uppercase text-zinc-500 mb-3\">Müşterilerimiz</div>
+          <h2 className=\"font-serif text-4xl sm:text-5xl\">PANAMA Hakkında</h2>
+        </div>
+        <div className=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10\">
+          {reviews.map((r, i) => (
+            <div key={i} className=\"border-t border-zinc-200 pt-8\">
+              <div className=\"flex gap-1 mb-4\">
+                {Array.from({ length: r.rating }).map((_, k) => (
+                  <Star key={k} size={14} className=\"fill-[#111] text-[#111]\" />
+                ))}
+              </div>
+              <p className=\"font-serif text-2xl leading-snug mb-6\">\"{r.text}\"</p>
+              <div className=\"text-[11px] tracking-[0.25em] uppercase text-zinc-500\">{r.name} · {r.product}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* INSTAGRAM */}
+      <section className=\"max-w-[1600px] mx-auto px-5 sm:px-8 pb-24\">
+        <div className=\"flex items-end justify-between mb-12\">
+          <div>
+            <div className=\"text-[11px] tracking-[0.3em] uppercase text-zinc-500 mb-3\">@panama.studio</div>
+            <h2 className=\"font-serif text-4xl sm:text-5xl\">Instagram</h2>
+          </div>
+        </div>
+        <div className=\"grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2\">
+          {INSTAGRAM.map((src, i) => (
+            <a key={i} href=\"#\" data-testid={`instagram-${i}`} className=\"block aspect-square overflow-hidden\">
+              <img src={src} alt=\"\" className=\"w-full h-full object-cover hover:scale-105 transition duration-700\" />
+            </a>
+          ))}
+        </div>
+      </section>
+    </div>
+  );
+}
+"

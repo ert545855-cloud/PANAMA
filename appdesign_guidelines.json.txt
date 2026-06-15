@@ -1,0 +1,147 @@
+{
+  "theme": "Light",
+  "archetype": "5 (Luxury) - Light Variant",
+  "brand_name": "PANAMA",
+  "domain": "Premium Women's Fashion E-commerce",
+  "aesthetics": "Zara Studio + Massimo Dutti + The Row mix. White-dominant, lots of whitespace, ultra premium, high conversion-focused. Editorial, minimal, sophisticated.",
+  "typography": {
+    "headings": "Cormorant Garamond",
+    "body": "Manrope",
+    "rules": [
+      "Use tracking-tight or tracking-tighter for large headings (text-4xl+).",
+      "Avoid bold weights for large text; prefer font-light or font-normal for a high-end editorial feel.",
+      "Use uppercase tracking-widest (tracking-[0.2em]) for overlines, small labels, and menu items.",
+      "Never center text by default. Use left-alignment for body and product details. Center-align only for hero statements and lookbook titles."
+    ]
+  },
+  "colors": {
+    "background": "#FFFFFF",
+    "surface": "#FAFAFA",
+    "primary": "#111111",
+    "primary_foreground": "#FFFFFF",
+    "secondary": "#F4F4F5",
+    "accent": "#D4AF37",
+    "text": "#111111",
+    "muted_text": "#71717A",
+    "border": "#E4E4E7",
+    "rules": [
+      "No full-screen gradients. Keep backgrounds solid pure white (#FFFFFF) to act as a gallery wall.",
+      "Use #FAFAFA subtly to separate sections like cart summaries or checkout panels.",
+      "Text should be deep black (#111111), never muddy grays for important info."
+    ]
+  },
+  "layout": {
+    "spacing": "Generous spacing. Use p-8, p-12, p-16, py-24. Whitespace is critical to convey luxury.",
+    "container": "max-w-[1600px] mx-auto px-4 sm:px-8",
+    "grid": "Use asymmetrical layouts for editorial sections (bento grid mode A). For products, use strict 4-column grids with tight gaps.",
+    "corners": "rounded-none (sharp edges strictly enforced for a luxury, tailored feel)."
+  },
+  "components": {
+    "header": {
+      "style": "Sticky at top, crystal glassmorphism (backdrop-blur-xl bg-white/80). Bottom border 1px solid #E4E4E7. Logo centered. Menu links center/left. Icons (Search, Favorites, Account, Cart) on the right.",
+      "data_testids": ["navbar", "nav-links", "cart-icon", "favorites-icon"]
+    },
+    "buttons": {
+      "style": "Sharp edges (rounded-none). Primary: bg-[#111111] text-white hover:bg-[#333333] transition-colors. Secondary: border border-[#111111] bg-transparent text-[#111111] hover:bg-[#111111] hover:text-white. Padding py-4 px-8 uppercase text-sm tracking-widest.",
+      "data_testids": ["primary-cta", "add-to-cart-button", "buy-now-button"]
+    },
+    "product_cards": {
+      "style": "Cardless. Image aspect-ratio [3/4] or [4/5]. Hover effect reveals secondary image. Product name, price, and color swatches placed below the image (left-aligned). No bounding boxes or borders around products.",
+      "data_testids": ["product-card", "product-title", "product-price", "favorite-toggle"]
+    },
+    "inputs_and_forms": {
+      "style": "Minimalist 'Underline' style: border-b border-[#E4E4E7] bg-transparent py-3 px-0, no rounded corners. Focus: border-[#111111] ring-0. Used in checkout and PANAMA Club newsletter.",
+      "data_testids": ["newsletter-input", "checkout-input"]
+    },
+    "campaign_banner": {
+      "style": "Full width, very thin height, bg-[#111111] text-[#FFFFFF], centered text text-xs uppercase tracking-widest.",
+      "content": "2500 TL Üzeri Ücretsiz Kargo"
+    }
+  },
+  "media": {
+    "hero": [
+      {
+        "url": "https://images.unsplash.com/flagged/photo-1570733117311-d990c3816c47?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA2ODl8MHwxfHNlYXJjaHwzfHxoaWdoJTIwZmFzaGlvbiUyMHdvbWVuJTIwZWRpdG9yaWFsfGVufDB8fHx8MTc4MTUxNDkxN3ww&ixlib=rb-4.1.0&q=85",
+        "description": "Hero Banner - Two women lying down editorial style. Text overlay: 'Timeless Elegance, Modern Confidence' with 'Premium kadın giyim koleksiyonu' subtitle.",
+        "category": "hero_banner"
+      }
+    ],
+    "categories": [
+      {
+        "url": "https://images.unsplash.com/photo-1580476163041-d895d5d22c62?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzZ8MHwxfHNlYXJjaHw0fHxtaW5pbWFsaXN0JTIwZWxlZ2FudCUyMHdvbWVuJTIwZHJlc3N8ZW58MHx8fHwxNzgxNTE0OTE3fDA&ixlib=rb-4.1.0&q=85",
+        "title": "Elbise",
+        "category": "category_card"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1616065297556-f05bc00c9a3e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzh8MHwxfHNlYXJjaHw0fHx3b21lbiUyMGJsYXplciUyMHN1aXQlMjBtaW5pbWFsaXN0fGVufDB8fHx8MTc4MTUxNDkxN3ww&ixlib=rb-4.1.0&q=85",
+        "title": "Blazer",
+        "category": "category_card"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1584273143981-41c073dfe8f8?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzh8MHwxfHNlYXJjaHwxfHx3b21lbiUyMGJsYXplciUyMHN1aXQlMjBtaW5pbWFsaXN0fGVufDB8fHx8MTc4MTUxNDkxN3ww&ixlib=rb-4.1.0&q=85",
+        "title": "Pantolon",
+        "category": "category_card"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1653286431693-2bbde8b10e14?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzZ8MHwxfHNlYXJjaHwzfHxtaW5pbWFsaXN0JTIwZWxlZ2FudCUyMHdvbWVuJTIwZHJlc3N8ZW58MHx8fHwxNzgxNTE0OTE3fDA&ixlib=rb-4.1.0&q=85",
+        "title": "Etek",
+        "category": "category_card"
+      }
+    ],
+    "lookbook_and_instagram": [
+      {
+        "url": "https://images.unsplash.com/photo-1580478491436-fd6a937acc9e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA2ODl8MHwxfHNlYXJjaHwxfHxoaWdoJTIwZmFzaGlvbiUyMHdvbWVuJTIwZWRpdG9yaWFsfGVufDB8fHx8MTc4MTUxNDkxN3ww&ixlib=rb-4.1.0&q=85",
+        "description": "Editorial red blazer",
+        "category": "lookbook_full_screen"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1629511565591-a1d494ad6c58?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA2ODl8MHwxfHNlYXJjaHw0fHxoaWdoJTIwZmFzaGlvbiUyMHdvbWVuJTIwZWRpdG9yaWFsfGVufDB8fHx8MTc4MTUxNDkxN3ww&ixlib=rb-4.1.0&q=85",
+        "description": "Black blazer sitting on bed",
+        "category": "instagram_grid"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1677246791501-85875b1ab187?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzh8MHwxfHNlYXJjaHwzfHx3b21lbiUyMGJsYXplciUyMHN1aXQlMjBtaW5pbWFsaXN0fGVufDB8fHx8MTc4MTUxNDkxN3ww&ixlib=rb-4.1.0&q=85",
+        "description": "Black suit posing",
+        "category": "instagram_grid"
+      }
+    ],
+    "products_bestsellers": [
+      {
+        "url": "https://images.unsplash.com/photo-1677246791501-85875b1ab187?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzh8MHwxfHNlYXJjaHwzfHx3b21lbiUyMGJsYXplciUyMHN1aXQlMjBtaW5pbWFsaXN0fGVufDB8fHx8MTc4MTUxNDkxN3ww&ixlib=rb-4.1.0&q=85",
+        "hover_url": "https://images.unsplash.com/photo-1616065297556-f05bc00c9a3e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzh8MHwxfHNlYXJjaHw0fHx3b21lbiUyMGJsYXplciUyMHN1aXQlMjBtaW5pbWFsaXN0fGVufDB8fHx8MTc4MTUxNDkxN3ww&ixlib=rb-4.1.0&q=85",
+        "name": "Siyah Kruvaze Blazer",
+        "price": "3,499 TL"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1608234808654-2a8875faa7fd?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzh8MHwxfHNlYXJjaHwyfHx3b21lbiUyMGJsYXplciUyMHN1aXQlMjBtaW5pbWFsaXN0fGVufDB8fHx8MTc4MTUxNDkxN3ww&ixlib=rb-4.1.0&q=85",
+        "hover_url": "https://images.unsplash.com/photo-1584273143981-41c073dfe8f8?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzh8MHwxfHNlYXJjaHwxfHx3b21lbiUyMGJsYXplciUyMHN1aXQlMjBtaW5pbWFsaXN0fGVufDB8fHx8MTc4MTUxNDkxN3ww&ixlib=rb-4.1.0&q=85",
+        "name": "Siyah Kumaş Pantolon",
+        "price": "2,199 TL"
+      }
+    ]
+  },
+  "motion_and_interactions": {
+    "hover": "Images scale up slightly (scale-105 duration-700 ease-out) inside an overflow-hidden container. On product cards, primary image fades out to reveal secondary image seamlessly.",
+    "buttons": "Background colors swap smoothly. Cart add causes a micro-interaction on the cart icon (e.g., small bounce or counter update).",
+    "scrolling": "Implement smooth scroll mechanics. Lookbook sections should use parallax scrolling."
+  },
+  "accessibility": {
+    "testing": "All interactive elements MUST include data-testid attributes (e.g., data-testid='checkout-submit-btn').",
+    "contrast": "Maintain WCAG AA 4.5:1 ratio. No text should be completely unreadable over images (use gradient overlays like bg-gradient-to-t from-black/40 to-transparent if text is placed on images)."
+  },
+  "pages_to_build": [
+    "Homepage (Hero, Categories, Best Sellers, Campaign, Lookbook, Reviews, Instagram Grid, Newsletter PANAMA Club)",
+    "Product Detail Page (Large photo gallery with zoom, name, price, description, size/color, Buy Now, Add to Cart)",
+    "Cart Page (Items, qty, coupon, summary)",
+    "Multi-step Checkout Page (Delivery info, shipping method, payment: Credit Card/Apple Pay/Google Pay/Bank Transfer, persistent order summary)"
+  ],
+  "instructions_to_main_agent": [
+    "DO NOT USE INTER, ROBOTO, OR OPEN SANS FOR HEADINGS. Use Cormorant Garamond exclusively for headers.",
+    "Strictly follow the white-dominant aesthetic. Do not add colored backgrounds to sections. Rely on whitespace.",
+    "Component styling: Keep everything sharp (rounded-none). Remove shadows from cards; rely on borders or spacing instead.",
+    "Hero Banner: Must have the exact phrase 'Timeless Elegance, Modern Confidence' and 'Premium kadın giyim koleksiyonu'.",
+    "Product Cards: Always show a second image on hover. Do not wrap them in traditional white 'Cards' with borders and shadow. They should feel 'cardless'.",
+    "Icons: Use Phosphor icons with light/thin weight to maintain premium aesthetic.",
+    "Testing: Add data-testid to every single button, link, and input."
+  ]
+}
